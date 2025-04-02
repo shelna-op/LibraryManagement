@@ -38,34 +38,43 @@ macOS: Install via Homebrew:
 brew install mysql
 
 Linux: Install via APT (Ubuntu/Debian):
-
+```bash
 sudo apt update
 sudo apt install mysql-server
+```
 
 Start MySQL Service
-
+```bash
 sudo systemctl start mysql  # For Linux
 brew services start mysql   # For macOS
+```
 
 Create Database & User
+
 eg:
+```sql
 CREATE DATABASE LibraryManagementDB;
 CREATE USER 'admin'@'localhost' IDENTIFIED BY 'Admin123!';
 GRANT ALL PRIVILEGES ON LibraryManagementDB.* TO 'admin'@'localhost';
 FLUSH PRIVILEGES;
+```
 
 🛠 Installation & Setup
 
 1️⃣ Clone the Repository
 
+```bash
 git clone https://github.com/shelna-op/LibraryManagement.git
 cd LibraryManagement 
+```
 
 2️⃣ Create a Virtual Environment
 
+```bash
 python -m venv venv
 source venv/bin/activate  # On Mac/Linux
 venv\Scripts\activate    # On Windows
+```
 
 3️⃣ Install Dependencies
 
