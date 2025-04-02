@@ -1,12 +1,14 @@
+from datetime import datetime
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from app.database import get_db
-from app.models import Book, BorrowingHistory
-from app.schemas import BorrowRequest, BorrowResponse
-from app.schemas import ReturnRequest, ReturnResponse
+
 from app.auth import get_current_user
-from datetime import datetime
+from app.database import get_db
 from app.logger import logger
+from app.models import Book, BorrowingHistory
+from app.schemas import (BorrowRequest, BorrowResponse, ReturnRequest,
+                         ReturnResponse)
 
 router = APIRouter()
 
@@ -68,7 +70,8 @@ def return_book(
     if book:
         book.copies_available += 1
     db.commit()
-    return {"message": "Book returned successfully",
-            "book_id": return_request.book_id,
-            "return_date": borrowing.return_date
-            }
+    return {
+        "message": "Book returned successfully",
+        "book_id": return_request.book_id,
+        "return_date": borrowing.return_date,
+    }

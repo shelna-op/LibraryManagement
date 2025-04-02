@@ -1,9 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
+
+from app.auth import get_current_user
 from app.database import get_db
 from app.models import BorrowingHistory
 from app.schemas import BorrowingHistoryResponse
-from app.auth import get_current_user
 
 router = APIRouter()
 
@@ -14,9 +15,7 @@ def get_my_borrowing_history(
     user: dict = Depends(get_current_user),
 ):
     history = (
-        db.query(BorrowingHistory)
-        .filter(BorrowingHistory.user_id == user["id"])
-        .all()
+        db.query(BorrowingHistory).filter(BorrowingHistory.user_id == user["id"]).all()
     )
     if not history:
         raise HTTPException(status_code=404, detail="No borrowing history found")

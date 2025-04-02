@@ -1,9 +1,11 @@
+import os
+
 from dotenv import load_dotenv
 from fastapi import HTTPException, Security
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
+
 from app.logger import logger
-import os
 
 load_dotenv()
 

@@ -1,10 +1,11 @@
-from passlib.hash import bcrypt
-from fastapi import APIRouter, Depends, HTTPException, logger
 import sqlalchemy
+from fastapi import APIRouter, Depends, HTTPException, logger
+from passlib.hash import bcrypt
 from sqlalchemy.orm import Session
+
 from app.auth import generate_user_access_token
-from app.models import User
 from app.database import get_db
+from app.models import User
 from app.schemas import UserCreate, UserResponse
 
 router = APIRouter()
@@ -22,15 +23,17 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
             username=user.username,
             email=user.email,
             password_hash=bcrypt.hash(user.password_hash),
-            role=user.role
+            role=user.role,
         )
         db.add(new_user)
         db.commit()
         db.refresh(new_user)
 
-        token_data = {"username": new_user.username,
-                      "id": new_user.id,
-                      "role": new_user.role}
+        token_data = {
+            "username": new_user.username,
+            "id": new_user.id,
+            "role": new_user.role,
+        }
         user_token = generate_user_access_token(data=token_data)
 
     except sqlalchemy.exc.IntegrityError as e:
@@ -43,5 +46,5 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
         "email": new_user.email,
         "role": new_user.role,
         "access_token": user_token,
-        "token_type": "bearer"
+        "token_type": "bearer",
     }

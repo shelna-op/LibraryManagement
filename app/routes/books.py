@@ -1,11 +1,12 @@
 from typing import List, Optional
-from fastapi import APIRouter, Depends, HTTPException, status
+
+from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.orm import Session
+
+from app.auth import get_current_user, librarian_required
 from app.database import get_db
 from app.models import Book
-from app.schemas import BookCreate, BookUpdate, BookResponse
-from app.auth import get_current_user, librarian_required
-from fastapi import Query
+from app.schemas import BookCreate, BookResponse, BookUpdate
 
 router = APIRouter()
 
@@ -43,7 +44,11 @@ def list_books(db: Session = Depends(get_db), user: dict = Depends(get_current_u
 
 
 @router.get("/{book_id}", response_model=BookResponse)
-def get_book(book_id: int, db: Session = Depends(get_db), user: dict = Depends(get_current_user),):
+def get_book(
+    book_id: int,
+    db: Session = Depends(get_db),
+    user: dict = Depends(get_current_user),
+):
     existing_book = db.query(Book).filter(Book.id == book_id).first()
     if not existing_book:
         raise HTTPException(status_code=404, detail="Book not found")
