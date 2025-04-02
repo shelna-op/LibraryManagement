@@ -83,16 +83,19 @@ pip install -r requirements.txt
 4️⃣ Set Up Environment Variables
 
 Create a .env file and add:
-
+```bash
 DATABASE_URL = "mysql+pymysql://username:password@localhost/LibrarymanagementDB"
 SECRET_KEY = "your-secret-key"
 SECRET_KEY_ALGORITHM = "HS256"
+```
 
 You can generate SECRET_KEY as follows:
 python script
 -------------
+```bash
 import secrets
 print(secrets.token_hex(32))
+```
 
 
 6️⃣ Start the FastAPI Server
@@ -121,7 +124,7 @@ Swagger UI: http://127.0.0.1:8000/docs
 
 
 🏗 Project Structure
-
+```bash
 .
 ├── app/
 │   ├── models.py           # Database models
@@ -138,4 +141,6 @@ Swagger UI: http://127.0.0.1:8000/docs
 ├── requirements.txt        # Dependencies
 ├── README.md               # Project documentation
 └── .env                    # Environment variables
+
+```
 
