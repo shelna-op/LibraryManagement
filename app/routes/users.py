@@ -11,7 +11,7 @@ from app.schemas import UserCreate, UserResponse
 router = APIRouter()
 
 
-@router.post("/users", response_model=UserResponse)
+@router.post("/register", response_model=UserResponse)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
     existing_user = db.query(User).filter(User.email == user.email).first()
     if existing_user:

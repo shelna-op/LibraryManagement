@@ -20,4 +20,5 @@ app.include_router(borrowing.router, prefix="/borrowing", tags=["Borrowing"])
 app.include_router(
     borrowing_history.router, prefix="/borrowing-history", tags=["Borrowing History"]
 )
-app.include_router(users_router)
+
+app.include_router(users_router, prefix="/users", tags=["Users"])

@@ -10,8 +10,7 @@ from app.logger import logger
 load_dotenv()
 
 SECRET_KEY = os.getenv("SECRET_KEY")
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+ALGORITHM = os.getenv("SECRET_KEY_ALGORITHM")
 
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
