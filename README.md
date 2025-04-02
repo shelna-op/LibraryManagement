@@ -97,6 +97,7 @@ import secrets
 print(secrets.token_hex(32))
 ```
 
+You can use python add_sample_data.py to add some sample data in the DB
 
 6️⃣ Start the FastAPI Server
 
