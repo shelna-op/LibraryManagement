@@ -15,6 +15,79 @@ This is a FastAPI-based Library Management System that provides functionalities 
 
 📊 Swagger UI for API Testing
 
+
+🛠️ Project Structure
+
+📂 LibraryManagement
+├── 📂 app
+│   ├── 📄 main.py             # FastAPI entry point
+│   ├── 📄 database.py         # Database connection setup
+│   ├── 📄 models.py           # Database models  # Database models
+│   ├── 📄 schemas.py          # Pydantic schemas
+│   ├── 📄 auth.py 
+│   ├── 📂 routes              # API routes
+│   │   ├── 📄 books.py        # Book-related endpoints
+│   │   ├── 📄 users.py        # User authentication
+│   │   ├── 📄 borrowing.py    # Borrowing logic
+│   │   ├── 📄 borrowing_history.py  # Borrowing history
+├── 📄 requirements.txt         # Python dependencies
+├── 📄 Dockerfile               # Docker build file
+├── 📄 docker-compose.yml       # Docker Compose config
+├── 📄 .env                     # Environment variables
+└── 📄 README.md                # Documentation
+
+
+You need to generate SECRET_KEY:
+
+using python script
+
+```bash
+import secrets
+print(secrets.token_hex(32))
+```
+
+📘 FastAPI + MySQL Docker Setup 
+-----------------------------------------------------------------------------------------------
+
+📌 Prerequisites
+Docker is installed
+
+1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/shelna-op/LibraryManagement.git
+cd LibraryManagement 
+```
+2️⃣ Create a .env File
+
+Create a .env file in the project root and add the following environment variables:
+
+Example:
+```bash
+MYSQL_ROOT_PASSWORD=Mysql123!
+MYSQL_DATABASE=LibrarymanagementDB
+MYSQL_USER=root
+MYSQL_PASSWORD=Mysql123!
+SECRET_KEY=<generated secret key>
+DATABASE_URL="mysql+pymysql://root:Mysql123!@db:3306/LibrarymanagementDB"
+```
+
+3️⃣  Running with Docker Compose
+```bash
+docker-compose up -d
+```
+
+4️⃣ Access the FastAPI App
+
+Go to: http://localhost:8000/docs
+
+This will open the interactive API documentation (Swagger UI).
+
+
+-----------------------------------------------------------------------------------------------
+📘 Setup FastAPI + MySQL without Docker  
+-----------------------------------------------------------------------------------------------
+
 📌 Prerequisites
 
 Before setting up the project, ensure you have the following installed:
@@ -89,14 +162,6 @@ SECRET_KEY = "your-secret-key"
 SECRET_KEY_ALGORITHM = "HS256"
 ```
 
-You can generate SECRET_KEY as follows:
-python script
--------------
-```bash
-import secrets
-print(secrets.token_hex(32))
-```
-
 You can use python add_sample_data.py to add some sample data in the DB
 
 6️⃣ Start the FastAPI Server
@@ -123,25 +188,4 @@ After running the server, you can access the API documentation at:
 
 Swagger UI: http://127.0.0.1:8000/docs
 
-
-🏗 Project Structure
-```bash
-.
-├── app/
-│   ├── models.py           # Database models
-│   ├── schemas.py          # Pydantic schemas
-│   ├── routes/
-│   │   ├── books.py        # Book-related endpoints
-│   │   ├── users.py        # User authentication
-│   │   ├── borrowing.py    # Borrowing logic
-│   │   ├── borrowing_history.py  # Borrowing history
-│   ├── auth.py             # Authentication & JWT logic
-│   ├── database.py         # Database connection
-│
-├── main.py                 # FastAPI app initialization
-├── requirements.txt        # Dependencies
-├── README.md               # Project documentation
-└── .env                    # Environment variables
-
-```
 
