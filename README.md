@@ -18,6 +18,7 @@ This is a FastAPI-based Library Management System that provides functionalities 
 
 🛠️ Project Structure
 
+```bash
 📂 LibraryManagement
 ├── 📂 app
 │   ├── 📄 main.py             # FastAPI entry point
@@ -35,9 +36,9 @@ This is a FastAPI-based Library Management System that provides functionalities 
 ├── 📄 docker-compose.yml       # Docker Compose config
 ├── 📄 .env                     # Environment variables
 └── 📄 README.md                # Documentation
+```
 
-
-You need to generate SECRET_KEY:
+📚 You need to generate SECRET_KEY:
 
 using python script
 
