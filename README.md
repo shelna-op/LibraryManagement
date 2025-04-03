@@ -71,6 +71,7 @@ MYSQL_USER=root
 MYSQL_PASSWORD=Mysql123!
 SECRET_KEY=<generated secret key>
 DATABASE_URL="mysql+pymysql://root:Mysql123!@db:3306/LibrarymanagementDB"
+SECRET_KEY_ALGORITHM=HS256
 ```
 
 3️⃣  Running with Docker Compose
